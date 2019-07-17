@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "953316940780",
+    "firebase_url": "https://flash-chat-a90dc.firebaseio.com",
+    "project_id": "flash-chat-a90dc",
+    "storage_bucket": "flash-chat-a90dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953316940780:android:2cf3a78d3f6e81de",
+        "android_client_info": {
+          "package_name": "io.morelia.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "953316940780-3o588a13a2rbookunq60q8em94ki12a9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx-7Pcv8Gf1ebHZeSebwiMkbX3S_IqSg4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "953316940780-3o588a13a2rbookunq60q8em94ki12a9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
