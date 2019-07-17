@@ -13,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final msgTextController = TextEditingController();
   final _auth = FirebaseAuth.instance;
   String email;
   String password;
@@ -50,17 +51,20 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Hero(
-                child: Container(
-                  height: 150.0,
-                  child: Image.asset('images/logo.png'),
+              Flexible(
+                child: Hero(
+                  child: Container(
+                    height: 150.0,
+                    child: Image.asset('images/logo.png'),
+                  ),
+                  tag: 'logo',
                 ),
-                tag: 'logo',
               ),
               SizedBox(
                 height: 48.0,
               ),
               TextField(
+                controller: msgTextController,
                 textAlign: TextAlign.center,
                 keyboardType: TextInputType.emailAddress,
                 onChanged: (value) {
@@ -73,6 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 8.0,
               ),
               TextField(
+                controller: msgTextController,
                 textAlign: TextAlign.center,
                 obscureText: true,
                 onChanged: (value) {
@@ -88,6 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Colors.orangeAccent,
                 title: 'Log In',
                 onPressed: () {
+                  msgTextController.clear();
                   login(context);
                 },
               ),
