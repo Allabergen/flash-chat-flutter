@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat/constants.dart';
+import 'package:flutter/services.dart';
 
 final _firestore = Firestore.instance;
 FirebaseUser loggedInUser;
@@ -54,7 +55,11 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: null,
+        leading: IconButton(
+          onPressed: () =>
+              SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop'),
+          icon: Icon(Icons.arrow_back),
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.close),

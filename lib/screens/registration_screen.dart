@@ -2,6 +2,7 @@ import 'package:flash_chat/components/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:toast/toast.dart';
 
 import '../constants.dart';
 import 'chat_screen.dart';
@@ -14,7 +15,8 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  final msgTextController = TextEditingController();
+  final txtTextController = TextEditingController();
+  final psdTextController = TextEditingController();
   final _auth = FirebaseAuth.instance;
   String email;
   String password;
@@ -36,7 +38,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         password = '';
       });
     } catch (e) {
+      Toast.show('Please enter correct data.', context,
+          duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
       print(e);
+    } finally {
+      setState(() => isLoading = false);
     }
   }
 
@@ -64,7 +70,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 height: 48.0,
               ),
               TextField(
-                controller: msgTextController,
+                controller: txtTextController,
                 textAlign: TextAlign.center,
                 keyboardType: TextInputType.emailAddress,
                 onChanged: (value) {
@@ -77,7 +83,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 height: 8.0,
               ),
               TextField(
-                controller: msgTextController,
+                controller: psdTextController,
                 textAlign: TextAlign.center,
                 obscureText: true,
                 onChanged: (value) {
@@ -93,7 +99,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 color: Colors.deepOrangeAccent,
                 title: 'Register',
                 onPressed: () {
-                  msgTextController.clear();
+                  txtTextController.clear();
+                  psdTextController.clear();
                   register(context);
                 },
               ),

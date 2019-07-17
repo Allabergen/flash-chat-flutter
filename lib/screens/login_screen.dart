@@ -4,6 +4,7 @@ import 'package:flash_chat/constants.dart';
 import 'package:flash_chat/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:toast/toast.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -13,7 +14,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final msgTextController = TextEditingController();
+  final txtTextController = TextEditingController();
+  final psdTextController = TextEditingController();
   final _auth = FirebaseAuth.instance;
   String email;
   String password;
@@ -36,7 +38,11 @@ class _LoginScreenState extends State<LoginScreen> {
         password = '';
       });
     } catch (e) {
+      Toast.show('Email or Password is incorrect', context,
+          duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
       print(e);
+    } finally {
+      setState(() => isLoading = false);
     }
   }
 
@@ -64,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 48.0,
               ),
               TextField(
-                controller: msgTextController,
+                controller: txtTextController,
                 textAlign: TextAlign.center,
                 keyboardType: TextInputType.emailAddress,
                 onChanged: (value) {
@@ -77,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 8.0,
               ),
               TextField(
-                controller: msgTextController,
+                controller: psdTextController,
                 textAlign: TextAlign.center,
                 obscureText: true,
                 onChanged: (value) {
@@ -93,7 +99,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Colors.orangeAccent,
                 title: 'Log In',
                 onPressed: () {
-                  msgTextController.clear();
+                  txtTextController.clear();
+                  psdTextController.clear();
                   login(context);
                 },
               ),
